@@ -72,15 +72,15 @@
 
 #include <bits/stdc++.h> 
 
-int solve(vector<int> nums, int i, int n)
+long long int solve(vector<int> nums, long long int i, int n)
 {
     if(i >= n)
         return 0;
     if(i == n-1)
         return nums[i];
 
-    int included = solve(nums, i+2, n) + nums[i];
-    int excluded = solve(nums, i+1, n);
+    long long int included = solve(nums, i+2, n) + nums[i];
+    long long int excluded = solve(nums, i+1, n);
 
     return max(included, excluded);
 }
@@ -102,7 +102,7 @@ long long int houseRobber(vector<int>& valueInHouse)
             vec2.push_back(valueInHouse[i]);
     }
 
-    int ans1 = solve(vec1, 0, n-1);
-    int ans2 = solve(vec2, 0, n-1);
+    long long int ans1 = solve(vec1, 0, n-1);
+    long long int ans2 = solve(vec2, 0, n-1);
     return max(ans1, ans2);
 }
