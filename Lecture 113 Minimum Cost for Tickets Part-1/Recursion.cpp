@@ -55,7 +55,35 @@
 
 
 
+-------------------------------------------------------------SIR APPROACH ------------------------------------------
 
+int solve(int &n, vector<int> &days, vector<int> &cost, int index)
+{
+    //base case
+    if(index >= n)
+        return 0;
+
+    int one = cost[0] + solve(n, days, cost, index+1);
+
+    int i;
+    for(i = index ; days[i] < days[index] + 7 ; i++);
+    int two = cost[1] + solve(n, days, cost, i);
+
+    for(i = index ; days[i] < days[index] + 30 ; i++);
+    int three = cost[2] + solve(n, days, cost, i);
+
+    return min(one, min(two, three));
+}
+
+int minimumCoins(int n, vector<int> days, vector<int> cost)
+{
+    // Write your code here.
+    int index = 0;
+    return solve(n, days, cost, index);
+}
+
+
+-------------------------------------------------------------MY APPROACH ------------------------------------------
 
 int solve(int n, vector<int> days, vector<int> cost, int Curr_day)
 {
@@ -83,3 +111,4 @@ int minimumCoins(int n, vector<int> days, vector<int> cost)
 {
     return solve(n, days, cost, days[0]);
 }
+
